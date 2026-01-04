@@ -211,15 +211,15 @@ async def refresh_token(
         jwt_manager: JWTAuthManagerInterface) -> dict:
     token = await get_refresh_token_by_token(db, data.refresh_token)
 
-    if not token:
-        raise exceptions.RefreshTokenNotFound("Refresh token not found.")
-
     try:
         decoded = jwt_manager.decode_refresh_token(data.refresh_token)
     except TokenExpiredError:
         raise TokenExpiredError("Token has expired.")
     except JWTError:
         raise InvalidTokenError("Invalid token.")
+
+    if not token:
+        raise exceptions.RefreshTokenNotFound("Refresh token not found.")
 
     user_id = decoded["user_id"]
     user = await get_user_by_id(db, user_id)

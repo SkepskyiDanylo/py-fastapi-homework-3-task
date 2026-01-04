@@ -6,5 +6,4 @@ from .accounts import (
     reset_password_completion,
     authenticate_user,
     refresh_token,
-
 )
