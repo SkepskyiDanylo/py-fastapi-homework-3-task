@@ -125,7 +125,7 @@ async def reset_password_completion(db: AsyncSession, data: schemas.PasswordRese
     if not user:
         raise exceptions.PasswordResetException
 
-    token = await get_password_rest_token_by_user(db, user)
+    token = await get_password_reset_token_by_user(db, user)
 
     if not token:
         raise exceptions.PasswordResetException
