@@ -91,14 +91,7 @@ async def activate_user_by_activation_token(db: AsyncSession, data: schemas.User
     return
 
 
-async def get_password_reset_token_by_user(db: AsyncSession,
-                                           user: database.UserModel) -> database.PasswordResetTokenModel:
-    query = select(database.PasswordResetTokenModel).where(database.PasswordResetTokenModel.user == user)
-    result = await db.execute(query)
-    return result.scalar_one_or_none()
-
-
-async def get_password_rest_token_by_user(
+async def get_password_reset_token_by_user(
         db: AsyncSession,
         user: database.UserModel) -> database.PasswordResetTokenModel:
     query = select(database.PasswordResetTokenModel).where(database.PasswordResetTokenModel.user == user)
