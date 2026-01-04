@@ -937,7 +937,7 @@ async def test_refresh_access_token_token_not_found(client, jwt_manager):
     refresh_token = jwt_manager.create_refresh_token({"user_id": 1})
     refresh_payload = {"refresh_token": refresh_token}
     refresh_response = await client.post("/api/v1/accounts/refresh/", json=refresh_payload)
-
+    print(refresh_response.json())
     assert refresh_response.status_code == 401, "Expected status code 401 for token not found."
     assert refresh_response.json()["detail"] == "Refresh token not found.", "Unexpected error message."
 

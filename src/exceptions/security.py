@@ -19,3 +19,27 @@ class InvalidTokenError(BaseSecurityError):
 
     def __init__(self, message="Invalid token."):
         super().__init__(message)
+
+
+class ActivationException(Exception):
+    pass
+
+
+class PasswordResetException(Exception):
+    pass
+
+
+class LoginException(Exception):
+    pass
+
+
+class NotActivatedException(Exception):
+    pass
+
+
+class RefreshTokenNotFound(Exception):
+    pass
+
+
+class UserNotFound(Exception):
+    pass
